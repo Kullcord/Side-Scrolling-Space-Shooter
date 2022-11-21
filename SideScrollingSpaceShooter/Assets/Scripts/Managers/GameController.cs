@@ -21,7 +21,6 @@ public class GameController : MonoBehaviour
     private bool paused = false;
     private bool tutorialActive = true;
 
-
     private void Update()
     {
         if (deathScreen == null)

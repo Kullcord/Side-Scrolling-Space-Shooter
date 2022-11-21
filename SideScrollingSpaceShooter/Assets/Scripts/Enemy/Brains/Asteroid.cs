@@ -18,7 +18,7 @@ public class Asteroid : MonoBehaviour
 
         var randXY = Random.Range(0.25f, 1.0f);
         var randRotSpeed = Random.Range(rotationSpeed / 2, rotationSpeed * 2);
-        var randSpeed = Random.Range(movementSpeed / 2, movementSpeed * 2);
+        var randSpeed = Random.Range(movementSpeed / 2, movementSpeed);
 
         transform.localScale = new Vector3(randXY, randXY, transform.localScale.z);
         rotationSpeed = randRotSpeed;

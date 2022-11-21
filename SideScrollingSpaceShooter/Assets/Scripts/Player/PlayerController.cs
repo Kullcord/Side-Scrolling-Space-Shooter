@@ -105,17 +105,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Ent");
-
-        if(collision.tag == "EnemyBullet")
-        {
-            TakeDamage(collision.gameObject.GetComponent<Projectile>().damage);
-            Debug.Log(">>>");
-        }
-    }
-
     public void TakeDamage(float damage)
     {
         health -= damage;

@@ -9,7 +9,6 @@ public class PoolItem
     public int pooledAmount;
     public bool canExpand = true;
 }
-
 public class ObjectPooling : MonoBehaviour
 {
     public List<PoolItem> itemsToPool;
