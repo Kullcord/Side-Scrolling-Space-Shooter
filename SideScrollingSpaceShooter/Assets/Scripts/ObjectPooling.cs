@@ -9,13 +9,6 @@ public class PoolItem
     public int pooledAmount;
     public bool canExpand = true;
 }
-/*public class PoolItem
-{
-    public string tag;
-    public GameObject prefab;
-    public int size;
-}*/
-
 
 public class ObjectPooling : MonoBehaviour
 {

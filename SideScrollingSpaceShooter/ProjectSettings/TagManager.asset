@@ -6,6 +6,12 @@ TagManager:
   tags:
   - PlayerBullet
   - Asteroid
+  - EnemyBullet
+  - Enemy
+  - Enemy1
+  - Enemy2
+  - LeftBorder
+  - RightBorder
   layers:
   - Default
   - TransparentFX

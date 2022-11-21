@@ -6,10 +6,12 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float deactivationTimer = 2f;
+    [SerializeField] private bool isEnemy;
+    public float damage = 20f;
 
     private void OnEnable()
     {
-        Invoke(nameof(DestroyProjectile), deactivationTimer);
+        Invoke(nameof(DeactivateProjectile), deactivationTimer);
     }
 
     private void Update()
@@ -25,7 +27,7 @@ public class Projectile : MonoBehaviour
         transform.position = temp;
     }
 
-    private void DestroyProjectile()
+    private void DeactivateProjectile()
     {
         gameObject.SetActive(false);
     }
@@ -37,9 +39,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Asteroid")// || == "Enemy"
-        {
-            DestroyProjectile();
-        }
+        if(collision.tag == "Asteroid" ||  collision.tag == "LeftBorder" || collision.tag == "RightBorder" || (!isEnemy && collision.tag == "Enemy1" || collision.tag == "Enemy2") || (isEnemy && collision.tag == "Player"))
+            DeactivateProjectile();
     }
 }
