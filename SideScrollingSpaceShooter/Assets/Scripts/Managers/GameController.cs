@@ -7,10 +7,15 @@ public class GameController : MonoBehaviour
 {
     public GameObject deathScreen;
     public GameObject pauseScreen;
+    public GameObject tutTxt1;
+    public GameObject tutTxt2;
+    public GameObject tutTxt3;
+    public GameObject spawnController;
     private bool done = false;
     private bool dead = false;
     private bool paused = false;
     public GameObject player;
+    private bool tutorialActive = true;
 
     private void Update()
     {
@@ -21,6 +26,11 @@ public class GameController : MonoBehaviour
         if (player == null)
             return;
 
+        if (tutorialActive)
+        {
+            TutorialManager();
+        }
+
         if (PlayerController.instance.health <= 0.0f && !done)
             ActivateDeathScreen();
 
@@ -30,6 +40,33 @@ public class GameController : MonoBehaviour
                     ActivatePauseScreen(true, 0);
                 else
                     ActivatePauseScreen(false, 1);
+    }
+    private void TutorialManager()
+    {
+        if (tutTxt1.activeSelf == true)
+        {
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A)
+                || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+                TutorialTxtManager(tutTxt1, tutTxt2);
+        }
+        else if (tutTxt2.activeSelf == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                TutorialTxtManager(tutTxt2, tutTxt3);
+        }
+        else if (tutTxt3.activeSelf == true)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+                TutorialTxtManager(tutTxt3, spawnController);
+        }
+        else
+            tutorialActive = false;
+    }
+
+    private void TutorialTxtManager(GameObject objToDeactivate, GameObject objToActivate)
+    {
+        objToDeactivate.SetActive(false);
+        objToActivate.SetActive(true);
     }
 
     private void ActivateDeathScreen()
