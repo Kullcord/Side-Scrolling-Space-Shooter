@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4079719136783786373}
   - component: {fileID: 3801068282565268489}
   - component: {fileID: 669657231312147214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
@@ -146,4 +146,9 @@ MonoBehaviour:
   speed: -10
   deactivationTimer: 1.5
   isEnemy: 1
-  damage: 20
+  damage: 10
+  explosion: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  explosionRange: 2

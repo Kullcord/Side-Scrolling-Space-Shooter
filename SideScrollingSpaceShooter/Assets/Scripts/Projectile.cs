@@ -9,6 +9,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] private bool isEnemy;
     public float damage = 20f;
 
+    public GameObject explosion;
+    public LayerMask enemyLayer;
+    public float explosionRange;
+
     private void OnEnable()
     {
         Invoke(nameof(DeactivateProjectile), deactivationTimer);
@@ -39,7 +43,43 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Asteroid" ||  collision.tag == "LeftBorder" || collision.tag == "RightBorder" || (!isEnemy && collision.tag == "Enemy1" || collision.tag == "Enemy2") || (isEnemy && collision.tag == "Player"))
+        if(collision.tag == "Asteroid" ||  collision.tag == "LeftBorder" || collision.tag == "RightBorder" 
+            || (!isEnemy && collision.tag == "Enemy1" || collision.tag == "Enemy2") || (isEnemy && collision.tag == "Player"))
             DeactivateProjectile();
+
+        if ((isEnemy && collision.tag == "Player"))
+            PlayerController.instance.TakeDamage(damage);
+
+        if (!isEnemy && collision.tag == "Enemy1" || collision.tag == "Enemy2")
+            Explode();
+    }
+
+    bool alreadyDone = false;
+    bool dealtDamage = false;
+
+    private void Explode()
+    {
+        //Instantiate explosion
+        if(explosion != null && !alreadyDone)
+        {
+            //add explosion from object pool
+        }
+
+        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, enemyLayer);
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            if (!dealtDamage)
+            {
+                enemies[i].GetComponent<EnemyBehaviourManager>().TakeDamage(damage);
+                dealtDamage = true;
+            }
+
+            Invoke("Delay", 0.05f);
+        }
+    }
+
+    private void Delay()
+    {
+        dealtDamage = false;
     }
 }

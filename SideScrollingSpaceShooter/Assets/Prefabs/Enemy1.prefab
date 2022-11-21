@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6248479195824375954}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ProjectileSpawn
   m_TagString: Enemy1
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6248479196002737990}
   - component: {fileID: 6248479196002737991}
   - component: {fileID: 6248479196002737988}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy1
   m_TagString: Enemy1
   m_Icon: {fileID: 0}
@@ -128,6 +128,7 @@ MonoBehaviour:
   projectileSpawn: {fileID: 6248479195824375955}
   behaviour: {fileID: 11400000, guid: 547592c2ae692ad4e81510d21a80b664, type: 2}
   health: 100
+  damage: 20
 --- !u!1 &6248479196490807997
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6248479196490807996}
   - component: {fileID: 6248479196490807987}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: baseship11.small_
   m_TagString: Enemy1
   m_Icon: {fileID: 0}

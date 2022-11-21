@@ -8,10 +8,11 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float degreesPerSecond;
+    [SerializeField] private float damage;
 
     Rigidbody2D rb;
-
-    private void OnEnable()
+                                                  
+    private void OnEnable()                                       
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -43,9 +44,15 @@ public class Asteroid : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerBullet")
-        {
-            gameObject.SetActive(false);
-        }
+        if (collision.tag == "PlayerBullet" || collision.tag == "EnemyBullet" || collision.tag == "Player")
+            DeactivateObject();
+
+        if (collision.tag == "Player")
+            PlayerController.instance.TakeDamage(damage);
+    }
+
+    private void DeactivateObject()
+    {
+        gameObject.SetActive(false);
     }
 }

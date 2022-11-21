@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "AIBehaviour/Bomber")]
-public class BomberBrain : AIBehaviour
+public class BomberBrain :   AIBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float offset = 90f;
+    [SerializeField] private float damage;
 
     public override void ExecuteBehaviour(EnemyBehaviourManager behaviourManager)
     {
         var currentPos = behaviourManager.gameObject.transform.position;
         var targetPos = behaviourManager.player.transform.position;
 
-        if (Vector2.Distance(currentPos, targetPos) > 2f)
+        if (Vector2.Distance(currentPos, targetPos) > 0.5f)
         {
             currentPos = Vector2.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
+        }
+        else
+        {
+            Explode(behaviourManager);
         }
 
         RotateTowardsTarget(behaviourManager, speed, offset);
@@ -31,5 +36,11 @@ public class BomberBrain : AIBehaviour
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
         behaviourManager.transform.rotation = Quaternion.Lerp(behaviourManager.transform.rotation, q, speed * Time.deltaTime);
+    }
+
+    private void Explode(EnemyBehaviourManager behaviourManager)
+    {
+        behaviourManager.health = 0;
+        PlayerController.instance.TakeDamage(behaviourManager.damage);
     }
 }

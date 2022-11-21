@@ -29,7 +29,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float minX;
     [SerializeField] float maxX;
 
+    public float health = 100f;
+
     #endregion
+
+    public static PlayerController instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
     private void Start()
     {
@@ -86,6 +96,27 @@ public class PlayerController : MonoBehaviour
             obj.transform.rotation = transform.rotation;
             obj.SetActive(true);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Ent");
+
+        if(collision.tag == "EnemyBullet")
+        {
+            TakeDamage(collision.gameObject.GetComponent<Projectile>().damage);
+            Debug.Log(">>>");
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    public void DeactivateObject()
+    {
+        gameObject.SetActive(false);
     }
 
     #region Animation

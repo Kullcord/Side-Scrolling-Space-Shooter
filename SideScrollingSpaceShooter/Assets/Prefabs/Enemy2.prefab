@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2025629876746534039}
   - component: {fileID: 2025629876746534038}
   - component: {fileID: 2025629876746534033}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy2
   m_TagString: Enemy2
   m_Icon: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   projectileSpawn: {fileID: 0}
   behaviour: {fileID: 11400000, guid: d545dc2e30865a24f8615ea5fc69c93a, type: 2}
   health: 100
+  damage: 25
 --- !u!1 &2025629878197994141
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2025629878197994142}
   - component: {fileID: 2025629878197994143}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ship6
   m_TagString: Enemy2
   m_Icon: {fileID: 0}
