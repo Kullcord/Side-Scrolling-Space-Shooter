@@ -43,9 +43,13 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Asteroid" ||  collision.tag == "LeftBorder" || collision.tag == "RightBorder" 
+        if (collision.tag == "Asteroid" || collision.tag == "LeftBorder" || collision.tag == "RightBorder"
             || (!isEnemy && collision.tag == "Enemy1" || collision.tag == "Enemy2") || (isEnemy && collision.tag == "Player"))
+        {
+            ObjectPool();
+
             DeactivateProjectile();
+        }
 
         if ((isEnemy && collision.tag == "Player"))
             PlayerController.instance.TakeDamage(damage);
@@ -59,21 +63,13 @@ public class Projectile : MonoBehaviour
 
     private void Explode()
     {
-        //Instantiate explosion
-        if(!alreadyDone)
-        {
-            //add explosion from object pool
-
-            alreadyDone = true;
-        }
-
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, enemyLayer);
         for(int i = 0; i < enemies.Length; i++)
         {
             if (!dealtDamage)
             {
                 enemies[i].GetComponent<EnemyBehaviourManager>().TakeDamage(damage);
-                dealtDamage = true;
+                dealtDamage = true; 
             }
 
             Invoke("Delay", 0.05f);
@@ -83,5 +79,19 @@ public class Projectile : MonoBehaviour
     private void Delay()
     {
         dealtDamage = false;
+    }
+
+    private void ObjectPool()
+    {
+        //add explosion from object pool
+        GameObject obj = ObjectPooling.instance.GetPooledObjects("BulletExplosion");
+
+        if (obj == null) return;
+
+        obj.transform.position = transform.position;
+        obj.transform.rotation = transform.rotation;
+        obj.SetActive(true);
+
+        alreadyDone = true;
     }
 }

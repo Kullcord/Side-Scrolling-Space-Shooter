@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     Vector3 moveDirection;
     [SerializeField] private float moveSpeed = 3.0f;
+
+    [Header("Stats")]
+    [SerializeField] private Slider healthBar;
+    public float health = 100f;
+    public float maxHealthAmount;
 
     bool speedUp;
     [SerializeField] float speedUpMultiplier;
@@ -27,7 +33,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float minX;
     [SerializeField] float maxX;
 
-    public float health = 100f;
 
     #endregion
 
@@ -42,6 +47,10 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         maxAttackTime = attackTime;
+
+        maxHealthAmount = health;
+        healthBar.maxValue = maxHealthAmount;
+        healthBar.value = health;
     }
 
     private void Update()
@@ -110,6 +119,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        healthBar.value = health;
     }
 
     public void DeactivateObject()

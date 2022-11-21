@@ -16,6 +16,7 @@ TagManager:
   - BomberExplosion
   - AsteroidExplosion
   - PlayerExplosion
+  - BulletExplosion
   layers:
   - Default
   - TransparentFX
