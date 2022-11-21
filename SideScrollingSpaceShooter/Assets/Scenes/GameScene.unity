@@ -2704,7 +2704,7 @@ MonoBehaviour:
   waitToStart: 1
   waitToStart2: 1.5
   waitToStart3: 0.25
-  fightersToSpawn: 1
+  fightersToSpawn: 2
   spawnArray:
   - {fileID: 1682296654}
   - {fileID: 704866016}
