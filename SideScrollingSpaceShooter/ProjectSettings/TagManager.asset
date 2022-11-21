@@ -12,6 +12,10 @@ TagManager:
   - Enemy2
   - LeftBorder
   - RightBorder
+  - Explosion
+  - BomberExplosion
+  - AsteroidExplosion
+  - PlayerExplosion
   layers:
   - Default
   - TransparentFX

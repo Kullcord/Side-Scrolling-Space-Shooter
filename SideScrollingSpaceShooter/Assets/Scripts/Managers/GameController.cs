@@ -5,17 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    [Header("References")]
+    public GameObject player;
+    public GameObject spawnController;
+
     public GameObject deathScreen;
     public GameObject pauseScreen;
+
     public GameObject tutTxt1;
     public GameObject tutTxt2;
     public GameObject tutTxt3;
-    public GameObject spawnController;
+
     private bool done = false;
     private bool dead = false;
     private bool paused = false;
-    public GameObject player;
     private bool tutorialActive = true;
+
 
     private void Update()
     {

@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     [SerializeField] private GameObject projectileSpawn;
 
-    //[SerializeField] private GameObject projectilePrefab;
-
     [SerializeField] private float attackTime;
     private float maxAttackTime;
     private bool canShoot;
@@ -116,63 +114,14 @@ public class PlayerController : MonoBehaviour
 
     public void DeactivateObject()
     {
+        GameObject obj = ObjectPooling.instance.GetPooledObjects("PlayerExplosion");
+
+        if (obj == null) return;
+
+        obj.transform.position = transform.position;
+        obj.transform.rotation = transform.rotation;
+        obj.SetActive(true);
+
         gameObject.SetActive(false);
     }
-
-    #region Animation
-    /*[Header("Animations")]
-    [SerializeField] private float animRotation;
-    [SerializeField] private float interpolationValue;
-    [SerializeField] private AnimationCurve animCurve;
-    bool animating = false;*/
-
-    /*if (moveDirection.y != 0)
-        AnimationHandler();
-    else
-    {
-        transform.rotation = Quaternion.identity;
-        Debug.Log("4");
-    }*/
-    /*private void AnimationHandler()
-    {
-        if (!animating)
-            if (moveDirection.y > 0)
-            {
-                StopAllCoroutines();
-                StartCoroutine(AnimateMovement(animRotation));
-                Debug.Log("1");
-            }
-            else if (moveDirection.y < 0)
-            {
-                StopAllCoroutines();
-                StartCoroutine(AnimateMovement(-animRotation));
-                Debug.Log("2");
-            }
-            else if (moveDirection.y == 0)
-            {
-                transform.rotation = Quaternion.identity;
-                Debug.Log("4");
-            }
-    }
-
-    IEnumerator AnimateMovement(float rotation)
-    {
-        animating = true;
-        var progression = 0.0f;
-        Quaternion rotToGo = Quaternion.Euler(0, 0, rotation);
-
-        while (progression < 0.99f)
-        {
-            progression += interpolationValue * Time.deltaTime;
-
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotToGo, animCurve.Evaluate(progression));
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        transform.rotation = rotToGo;
-        animating = false;
-
-    }*/
-    #endregion
 }

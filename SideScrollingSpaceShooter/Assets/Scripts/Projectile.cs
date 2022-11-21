@@ -60,9 +60,11 @@ public class Projectile : MonoBehaviour
     private void Explode()
     {
         //Instantiate explosion
-        if(explosion != null && !alreadyDone)
+        if(!alreadyDone)
         {
             //add explosion from object pool
+
+            alreadyDone = true;
         }
 
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, enemyLayer);

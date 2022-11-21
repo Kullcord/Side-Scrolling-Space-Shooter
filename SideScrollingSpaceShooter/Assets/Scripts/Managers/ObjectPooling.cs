@@ -12,9 +12,6 @@ public class PoolItem
 
 public class ObjectPooling : MonoBehaviour
 {
-
-    #region Pooling With Lists
-
     public List<PoolItem> itemsToPool;
     public List<GameObject> pooledObjects;
 
@@ -67,51 +64,4 @@ public class ObjectPooling : MonoBehaviour
         
         return null;
     }
-    #endregion
-
-    #region PoolingWithDictionary
-
-    /*public List<PoolItem> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-
-    private void Start()
-    {
-        //Pooling with dictionary
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-
-        foreach (PoolItem pool in pools)
-        {
-            Queue<GameObject> objPool = new Queue<GameObject>();
-
-            for (int i = 0; i < pool.size; i++)
-            {
-                GameObject obj = Instantiate(pool.prefab);
-                obj.SetActive(false);
-                objPool.Enqueue(obj);
-            }
-
-            poolDictionary.Add(pool.tag, objPool);
-        }
-    }
-
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
-    {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogWarning("Pool with tag" + tag + "does not exist.");
-            return null;
-        }
-
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
-
-        return objectToSpawn;
-    }*/
-
-
-
-    #endregion
 }

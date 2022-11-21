@@ -18,10 +18,6 @@ public class BomberBrain :   AIBehaviour
         {
             currentPos = Vector2.MoveTowards(currentPos, targetPos, speed * Time.deltaTime);
         }
-        else
-        {
-            Explode(behaviourManager);
-        }
 
         RotateTowardsTarget(behaviourManager, speed, offset);
 
@@ -36,11 +32,5 @@ public class BomberBrain :   AIBehaviour
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
         behaviourManager.transform.rotation = Quaternion.Lerp(behaviourManager.transform.rotation, q, speed * Time.deltaTime);
-    }
-
-    private void Explode(EnemyBehaviourManager behaviourManager)
-    {
-        behaviourManager.health = 0;
-        PlayerController.instance.TakeDamage(behaviourManager.damage);
     }
 }

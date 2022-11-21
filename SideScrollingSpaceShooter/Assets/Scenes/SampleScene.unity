@@ -531,13 +531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 381a5da6185dd6442998afd886916b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1712015191}
+  spawnController: {fileID: 1672739903}
   deathScreen: {fileID: 788834784}
   pauseScreen: {fileID: 469971623}
   tutTxt1: {fileID: 317394036}
   tutTxt2: {fileID: 1908856246}
   tutTxt3: {fileID: 1712799814}
-  spawnController: {fileID: 1672739903}
-  player: {fileID: 1712015191}
 --- !u!1 &469971623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2060,22 @@ MonoBehaviour:
       type: 3}
     pooledAmount: 5
     canExpand: 1
+  - pooledObject: {fileID: 7826717398581131906, guid: 6c15090a2955aa3489b5a34617fd0e05,
+      type: 3}
+    pooledAmount: 5
+    canExpand: 1
+  - pooledObject: {fileID: 1388776439542647304, guid: 988f158cd04eb4043a4db9a1cb457ab2,
+      type: 3}
+    pooledAmount: 5
+    canExpand: 1
+  - pooledObject: {fileID: 4967974187849282997, guid: 101ba99f4e63ef84fbddcbe2f8806f71,
+      type: 3}
+    pooledAmount: 5
+    canExpand: 1
+  - pooledObject: {fileID: 7715492175670515035, guid: bb3fce4ec58e3d34db1276baae1d0300,
+      type: 3}
+    pooledAmount: 1
+    canExpand: 1
   pooledObjects: []
 --- !u!1 &1607798409
 GameObject:
@@ -2302,7 +2318,7 @@ MonoBehaviour:
   waitToStart: 1
   waitToStart2: 1.5
   waitToStart3: 0.25
-  fightersToSpawn: 2
+  fightersToSpawn: 1
   spawnArray:
   - {fileID: 1682296654}
   - {fileID: 704866016}
@@ -2798,7 +2814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861278655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.23, y: 0, z: 0}
+  m_LocalPosition: {x: -15.64, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 726154585}

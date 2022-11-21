@@ -23,7 +23,11 @@ public class EnemyBehaviourManager : MonoBehaviour
         if (health > 0f)
             behaviour.ExecuteBehaviour(this);
         else
+        {
+            ExplosionPool("Explosion", gameObject.transform);
+
             DeactivateObject();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,12 +40,23 @@ public class EnemyBehaviourManager : MonoBehaviour
 
         if(collision.tag == "Player")
         {
-            DeactivateObject();
-            PlayerController.instance.TakeDamage(damage);
+            if(gameObject.tag == "Enemy1")
+                PlayerController.instance.TakeDamage(damage);
+            else if(gameObject.tag == "Enemy2")
+            {
+                if (collision.tag == "Player")
+                {
+                    DeactivateObject();
+
+                    ExplosionPool("BomberExplosion", gameObject.transform);
+
+                    PlayerController.instance.TakeDamage(damage);
+                }
+            }
         }
     }
 
-    private void DeactivateObject()
+    public void DeactivateObject()
     {
         gameObject.SetActive(false);
     }
@@ -49,5 +64,16 @@ public class EnemyBehaviourManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+    }
+
+    private void ExplosionPool(string tag, Transform pos)
+    {
+        GameObject obj = ObjectPooling.instance.GetPooledObjects(tag);
+
+        if (obj == null) return;
+
+        obj.transform.position = pos.position;
+        obj.transform.rotation = pos.rotation;
+        obj.SetActive(true);
     }
 }

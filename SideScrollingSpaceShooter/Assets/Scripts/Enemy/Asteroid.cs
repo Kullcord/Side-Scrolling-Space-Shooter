@@ -35,16 +35,23 @@ public class Asteroid : MonoBehaviour
     {
         transform.Rotate(0, 0, degreesPerSecond * rotationSpeed);
 
-        rb.velocity = Vector2.left * movementSpeed;
+        //rb.velocity = Vector2.left * movementSpeed;
 
-        //Vector3 temp = transform.position;
-        //temp.x += -movementSpeed * Time.deltaTime;
-        //transform.position = temp;
+        Vector3 temp = transform.position;
+        temp.x += -movementSpeed * Time.deltaTime;
+        transform.position = temp;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "PlayerBullet" || collision.tag == "EnemyBullet" || collision.tag == "Player")
+        {
+            ExplosionPool("AsteroidExplosion");
+
+            DeactivateObject();
+        }
+
+        if (collision.tag == "LeftBorder")
             DeactivateObject();
 
         if (collision.tag == "Player")
@@ -54,5 +61,16 @@ public class Asteroid : MonoBehaviour
     private void DeactivateObject()
     {
         gameObject.SetActive(false);
+    }
+
+    private void ExplosionPool(string tag)
+    {
+        GameObject obj = ObjectPooling.instance.GetPooledObjects(tag);
+
+        if (obj == null) return;
+
+        obj.transform.position = transform.position;
+        obj.transform.rotation = transform.rotation;
+        obj.SetActive(true);
     }
 }
