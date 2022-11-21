@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     #region Fields
+    [SerializeField] private AudioSource source;
+    public AudioSource explosionSource;
+
     [Header("Movement")]
     Vector3 moveDirection;
     [SerializeField] private float moveSpeed = 3.0f;
@@ -102,6 +105,8 @@ public class PlayerController : MonoBehaviour
             obj.transform.position = transform.position;
             obj.transform.rotation = transform.rotation;
             obj.SetActive(true);
+
+            source.Play();
         }
     }
 
@@ -109,18 +114,5 @@ public class PlayerController : MonoBehaviour
     {
         health -= damage;
         healthBar.value = health;
-    }
-
-    public void DeactivateObject()
-    {
-        GameObject obj = ObjectPooling.instance.GetPooledObjects("PlayerExplosion");
-
-        if (obj == null) return;
-
-        obj.transform.position = transform.position;
-        obj.transform.rotation = transform.rotation;
-        obj.SetActive(true);
-
-        gameObject.SetActive(false);
     }
 }

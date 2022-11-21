@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     public LayerMask enemyLayer;
     public float explosionRange;
 
+    bool dealtDamage = false;
+
     private void OnEnable()
     {
         Invoke(nameof(DeactivateProjectile), deactivationTimer);
@@ -58,9 +60,6 @@ public class Projectile : MonoBehaviour
             Explode();
     }
 
-    bool alreadyDone = false;
-    bool dealtDamage = false;
-
     private void Explode()
     {
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, enemyLayer);
@@ -91,7 +90,5 @@ public class Projectile : MonoBehaviour
         obj.transform.position = transform.position;
         obj.transform.rotation = transform.rotation;
         obj.SetActive(true);
-
-        alreadyDone = true;
     }
 }

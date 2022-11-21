@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     [Header("References")]
     public GameObject player;
     public GameObject spawnController;
+    public AudioSource source;
 
     public GameObject deathScreen;
     public GameObject pauseScreen;
@@ -20,6 +21,11 @@ public class GameController : MonoBehaviour
     private bool dead = false;
     private bool paused = false;
     private bool tutorialActive = true;
+
+    private void Start()
+    {
+        source.Play();
+    }
 
     private void Update()
     {
@@ -61,7 +67,9 @@ public class GameController : MonoBehaviour
         else if (tutTxt3.activeSelf == true)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
                 TutorialTxtManager(tutTxt3, spawnController);
+            }
         }
         else
             tutorialActive = false;
